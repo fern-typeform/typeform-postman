@@ -1,8 +1,8 @@
-# {Company} Postman Collection
+# Typeform Postman Collection
 
-This repository contains a [Postman Collection](/collection.json) for the [{company} API](docs_url).
+This repository contains a [Postman Collection](/collection.json) for the [Typeform API](https://www.typeform.com/developers/create/).
 
-[![Open in Postman](https://run.pstmn.io/button.svg)](https://www.postman.com/fern-api/workspace/fern-{company})
+[![Open in Postman](https://run.pstmn.io/button.svg)](https://www.postman.com/fern-api/workspace/fern-typeform)
 
 ## What is a Postman Collection?
 
@@ -10,4 +10,4 @@ This repository contains a [Postman Collection](/collection.json) for the [{comp
 
 ## Issues
 
-Feel free to [leave an issue](https://github.com/fern-{company}/{company}-postman/issues) on this repo.
+Feel free to [leave an issue](https://github.com/fern-typeform/typeform-postman/issues) on this repo.
