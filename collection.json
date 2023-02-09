@@ -97,7 +97,7 @@
             "method": "POST",
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"title\": \"example\"\n}",
+              "raw": "{\n    \"title\": \"example\",\n    \"settings\": {\n        \"language\": \"example\",\n        \"is_public\": true,\n        \"progress_bar\": \"example\",\n        \"show_progress_bar\": true,\n        \"show_typeform_branding\": true,\n        \"meta\": {\n            \"allow_indexing\": true,\n            \"description\": \"example\",\n            \"image\": {\n                \"href\": \"example\"\n            }\n        },\n        \"redirect_after_submit_url\": \"example\",\n        \"google_analytics\": \"example\",\n        \"facebook_pixel\": \"example\",\n        \"google_tag_manager\": \"example\",\n        \"notifications\": {\n            \"self\": {\n                \"enabled\": true,\n                \"recipients\": [\n                    \"example\"\n                ],\n                \"reply_to\": \"example\",\n                \"subject\": \"example\",\n                \"message\": \"example\"\n            }\n        }\n    }\n}",
               "options": {
                 "raw": {
                   "language": "json"
