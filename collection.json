@@ -1,0 +1,298 @@
+{
+  "info": {
+    "name": "Typeform",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.typeform.com/",
+      "type": "string"
+    },
+    {
+      "key": "apiKey",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "auth": {
+    "apikey": [
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "key",
+        "value": "api_key",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ],
+    "type": "apikey"
+  },
+  "item": [
+    {
+      "name": "Accounts",
+      "item": [
+        {
+          "name": "Retrieve your own account",
+          "request": {
+            "description": "Retrieve your own account information.",
+            "url": {
+              "raw": "{{baseUrl}}/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "me"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "api_key",
+                "value": "{{apiKey}}",
+                "type": "string"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "_type": "endpoint"
+        }
+      ],
+      "_type": "container"
+    },
+    {
+      "name": "Forms",
+      "item": [
+        {
+          "name": "Create form",
+          "request": {
+            "description": "Here's the general structure for requests to create a form:\n  - `title`: Title to use for the form.\n  - `settings`: Object that specifies form settings and metadata, including the language to use for the form, whether the form is publicly available, the basis for the progress bar, and search engine indexing settings.\n  - `theme`: Theme to use for the form.\n  - `workspace`: Workspace that contains the form.\n  - `hidden`: Array of Hidden Fields to use in the form.\n  - `variables`: Object that keeps track of total score or price, if you use them in the form.\n  - `welcome_screens`: Array of objects that specify settings and properties for the form's welcome screen.\n  - `thankyou_screens`: Array of objects that specify settings and properties for the form's thank you screen.\n  - `fields`: Array of objects that specify the fields to use in the form and their properties, validations, and attachments.\n  - `logic`: Array of Logic Jump objects to use in the form.\n\nExpand the schema below for details about each of these elements. For optional elements, if you don't send a value and the element doesn't have a default value, no attribute will be returned.\n\nAny images you want to use in your form must already exist in your Typeform account. If you try to create a form that includes an image that isn't already in your Typeform account, the response will include an \"IMAGE_NOT_FOUND\" error. Use the [POST https://api.typeform.com/images](/create/reference/create-image) endpoint to add images to your account.\n\n**NOTE:** It is not possible to inject third-party content into a typeform using the Create API.",
+            "url": {
+              "raw": "{{baseUrl}}/forms",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "forms"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "api_key",
+                "value": "{{apiKey}}",
+                "type": "string"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"example\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "_type": "endpoint"
+        }
+      ],
+      "_type": "container"
+    },
+    {
+      "name": "Responses",
+      "item": [
+        {
+          "name": "Retrieve responses",
+          "request": {
+            "description": "Returns form responses and date and time of form landing and submission.",
+            "url": {
+              "raw": "{{baseUrl}}/forms/{form_id}/responses?page_size=&since=&until=&after=&before=&included_response_ids=&completed=&sort=&query=",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "forms",
+                "{form_id}",
+                "responses"
+              ],
+              "query": [
+                {
+                  "key": "page_size",
+                  "value": "",
+                  "description": "Maximum number of responses. Default value is **25**. Maximum value is **1000**. If your typeform has fewer than 1000 responses, you can retrieve all of the responses in a single request by adding the `page_size` parameter. If your typeform has more than 1000 responses, use the [`since` and `until`](responses/walkthroughs#use-the-since-and-until-query-parameters-to-retrieve-a-date-range) or [`after`](responses/walkthroughs#use-the-after-query-parameter-to-paginate) query parameters to narrow the scope of your request."
+                },
+                {
+                  "key": "since",
+                  "value": "",
+                  "description": "Limit request to responses submitted since the specified date and time. In ISO 8601 format, UTC time, to the second, with T as a delimiter between the date and time. See the [Responses Walkthroughs](/responses/walkthroughs/#use-query-parameters-to-retrieve-specific-data) for an example request that uses the `since` parameter."
+                },
+                {
+                  "key": "until",
+                  "value": "",
+                  "description": "Limit request to responses submitted until the specified date and time. In ISO 8601 format, UTC time, to the second, with T as a delimiter between the date and time. See the [Responses Walkthroughs](/responses/walkthroughs/#use-query-parameters-to-retrieve-specific-data) for an example request that uses the `until` parameter."
+                },
+                {
+                  "key": "after",
+                  "value": "",
+                  "description": "Limit request to responses submitted after the specified token. If you use the `after` parameter, the responses will be sorted in the order that our system processed them (instead of the default order, `submitted_at`). This ensures that you can traverse the complete set of responses without repeating entries. See the [Responses Walkthroughs](/responses/walkthroughs/#use-query-parameters-to-retrieve-specific-data) for an example request that uses the `after` parameter."
+                },
+                {
+                  "key": "before",
+                  "value": "",
+                  "description": "Limit request to responses submitted before the specified token. If you use the `before` parameter, the responses will be sorted in the order that our system processed them (instead of the default order, `submitted_at`). This ensures that you can traverse the complete set of responses without repeating entries."
+                },
+                {
+                  "key": "included_response_ids",
+                  "value": "",
+                  "description": "Limit request to the specified `response_id` values. Use a comma-separated list to specify more than one `response_id` value."
+                },
+                {
+                  "key": "completed",
+                  "value": "",
+                  "description": "true if form was submitted. Otherwise, false."
+                },
+                {
+                  "key": "sort",
+                  "value": "",
+                  "description": "Order of responses. Currently, responses are automatically sorted by `submitted_at,desc`---the date they were submitted, from newest to oldest. We plan to add more options for sort order soon."
+                },
+                {
+                  "key": "query",
+                  "value": "",
+                  "description": "Limit request to only responses that that include the specified string. You can specify any string as the `query` value. The string will be escaped, and the query will include Hidden Fields."
+                }
+              ],
+              "variable": [
+                {
+                  "key": "form_id",
+                  "value": "",
+                  "description": "Unique ID for the form. Find in your form URL. For example, in the URL \"https://mysite.typeform.com/to/u6nXL7\" the form_id is `u6nXL7`."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "api_key",
+                "value": "{{apiKey}}",
+                "type": "string"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "_type": "endpoint"
+        },
+        {
+          "name": "Delete responses",
+          "request": {
+            "description": "Delete responses to a form. You must specify the `included_tokens` parameter.",
+            "url": {
+              "raw": "{{baseUrl}}/forms/{form_id}/responses?included_tokens=",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "forms",
+                "{form_id}",
+                "responses"
+              ],
+              "query": [
+                {
+                  "key": "included_tokens",
+                  "value": "",
+                  "description": "Comma-separated list of tokens of the responses to delete. You can list up to **1000** tokens."
+                }
+              ],
+              "variable": [
+                {
+                  "key": "form_id",
+                  "value": "",
+                  "description": "Unique ID for the form. Find in your form URL. For example, in the URL \"https://mysite.typeform.com/to/u6nXL7\" the form_id is `u6nXL7`."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "api_key",
+                "value": "{{apiKey}}",
+                "type": "string"
+              }
+            ],
+            "method": "DELETE"
+          },
+          "response": [],
+          "_type": "endpoint"
+        },
+        {
+          "name": "Retrieve response file",
+          "request": {
+            "description": "Retrieves a file uploaded as an answer for a submission",
+            "url": {
+              "raw": "{{baseUrl}}/forms/{form_id}/responses/:response_id/fields/:field_id/files/:filename",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "forms",
+                "{form_id}",
+                "responses",
+                ":response_id",
+                "fields",
+                ":field_id",
+                "files",
+                ":filename"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "form_id",
+                  "value": "",
+                  "description": "Unique ID for the form. Find in your form URL. For example, in the URL \"https://mysite.typeform.com/to/u6nXL7\" the form_id is `u6nXL7`."
+                },
+                {
+                  "key": "response_id",
+                  "value": "",
+                  "description": "Unique ID for the response."
+                },
+                {
+                  "key": "field_id",
+                  "value": "",
+                  "description": "Unique ID for the file upload field"
+                },
+                {
+                  "key": "filename",
+                  "value": "",
+                  "description": "filename for the uploaded file"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "api_key",
+                "value": "{{apiKey}}",
+                "type": "string"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "_type": "endpoint"
+        }
+      ],
+      "_type": "container"
+    }
+  ]
+}
